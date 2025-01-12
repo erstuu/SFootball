@@ -1,4 +1,4 @@
-# App Preview
+## App Preview
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/ae452218-d64e-4123-a665-d428ebd47cd1" alt="Homepage" width="30%" style="margin-right: 10px;">
