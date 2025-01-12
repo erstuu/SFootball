@@ -3,7 +3,9 @@ package com.uas.sfootball.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import com.uas.sfootball.models.Dates
+import com.uas.sfootball.models.MatchesWithDate
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -12,6 +14,7 @@ interface DateDao {
     @Insert
     suspend fun insertDates(date: List<Dates>)
 
+    @Transaction
     @Query("SELECT * FROM dates")
-    fun getDates(): Flow<List<Dates>>
+    fun getDatesWithMatches(): Flow<List<MatchesWithDate>>
 }

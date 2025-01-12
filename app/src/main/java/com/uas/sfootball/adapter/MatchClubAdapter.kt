@@ -24,7 +24,6 @@ class MatchClubAdapter(private val listMatch: List<Match>) : RecyclerView.Adapte
             with(binding) {
                 tvClubNameHome.text = match.nameHomeTeam
                 tvClubNameAway.text = match.nameAwayTeam
-                tvDateTime.text = match.dateEvent
                 cvClubLogoHome.setImageResource(match.logoHomeTeam)
                 cvClubLogoAway.setImageResource(match.logoAwayTeam)
             }

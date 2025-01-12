@@ -5,7 +5,6 @@ import androidx.lifecycle.asLiveData
 import com.uas.sfootball.MatchRepository
 
 class HomeViewModel(private val repository: MatchRepository) : ViewModel() {
-    fun getDate() = repository.getDates().asLiveData()
     fun getMatches(dateId: Int) = repository.getMatches(dateId).asLiveData()
     fun getDatesWithMatches() = repository.getDatesWithMatches().asLiveData()
 }

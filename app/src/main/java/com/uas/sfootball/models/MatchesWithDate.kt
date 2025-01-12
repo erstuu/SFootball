@@ -3,7 +3,7 @@ package com.uas.sfootball.models
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class DatesWithMatches(
+data class MatchesWithDate(
     @Embedded val date: Dates,
     @Relation(
         parentColumn = "id",
