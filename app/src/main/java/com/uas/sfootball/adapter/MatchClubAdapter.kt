@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.uas.sfootball.databinding.ItemViewMatchBinding
+import com.uas.sfootball.models.Dates
 import com.uas.sfootball.models.Match
+import com.uas.sfootball.models.MatchesWithDate
 
-class MatchClubAdapter(private val listMatch: List<Match>) : RecyclerView.Adapter<MatchClubAdapter.ViewHolder>() {
+class MatchClubAdapter(private val listMatch: List<MatchesWithDate>) : RecyclerView.Adapter<MatchClubAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemViewMatchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -14,16 +16,25 @@ class MatchClubAdapter(private val listMatch: List<Match>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listMatch[position])
+        val (match, date) = flattenedMatches[position]
+        holder.bind(match, date)
+    }
+
+    private val flattenedMatches = listMatch.flatMap { matchesWithDate ->
+        matchesWithDate.matches.map { match ->
+            match to matchesWithDate.date
+        }
     }
 
     override fun getItemCount(): Int = listMatch.size
 
     inner class ViewHolder(private val binding: ItemViewMatchBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(match: Match) {
+        fun bind(match: Match, date: Dates) {
+            val hour = "${date.hour}:${date.minute}"
             with(binding) {
                 tvClubNameHome.text = match.nameHomeTeam
                 tvClubNameAway.text = match.nameAwayTeam
+                tvDateTime.text = hour
                 cvClubLogoHome.setImageResource(match.logoHomeTeam)
                 cvClubLogoAway.setImageResource(match.logoAwayTeam)
             }

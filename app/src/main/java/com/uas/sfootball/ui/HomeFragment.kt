@@ -15,7 +15,7 @@ import com.uas.sfootball.SFootballApplication
 import com.uas.sfootball.ViewModelFactory
 import com.uas.sfootball.adapter.MatchClubAdapter
 import com.uas.sfootball.databinding.FragmentHomeBinding
-import com.uas.sfootball.models.Match
+import com.uas.sfootball.models.MatchesWithDate
 import java.util.Calendar
 
 class HomeFragment : Fragment() {
@@ -97,14 +97,11 @@ class HomeFragment : Fragment() {
 
     private fun setupObserver() {
         viewModel.getDatesWithMatches().observe(viewLifecycleOwner) { datesWithMatches ->
-            datesWithMatches.forEach {
-                val matches = it.matches
-                setupRecyclerView(matches)
-            }
+            setupRecyclerView(datesWithMatches)
         }
     }
 
-    private fun setupRecyclerView(matches: List<Match>) {
+    private fun setupRecyclerView(matches: List<MatchesWithDate>) {
         val adapterMatch = MatchClubAdapter(matches)
         with(binding.rvMatch) {
             layoutManager = LinearLayoutManager(context)
