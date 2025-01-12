@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Sfootball</string>
+    <string name="beranda">Beranda</string>
+    <string name="tambah_jadwal">Tambah Jadwal</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="day">Senin</string>
+    <string name="date">8</string>
+    <string name="date_time">16.00</string>
+    <string name="club_1">Foc FC</string>
+    <string name="club_2">Tiger FC</string>
+    <string name="cup">Juragan Cup</string>
+    <string name="month_year">Januari 2025</string>
+    <string name="pilih_tanggal">pilih tanggal</string>
+    <string name="ok">OK</string>
+    <string name="jpg_png_file">jpg/png file</string>
+    <string name="waktu">Waktu</string>
+    <string name="waktu_angka">16.00</string>
+    <string name="tanggal_angka">11/01/2025</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="jalak_harupat">Jalak Harupat</string>
+    <string name="stadion">Stadion</string>
+    <string name="btn_simpan">Simpan</string>
+    <string name="data_berhasil_ditambahkan">Data berhasil ditambahkan</string>
+    <string name="form_harus_diisi_semua">Form harus diisi semua</string>
+</resources>

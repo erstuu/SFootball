@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/light_yellow"
+            app:title="@string/tambah_jadwal"
+            app:titleTextAppearance="@style/ToolbarTitleText" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_name_club_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Nama club home"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_name_club_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_club_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_club_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_name_club_1"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="Foo Fc"
+            android:inputType="text"
+            android:padding="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_logo_club_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Logo club home"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_name_club_1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_logo_club_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_logo_club_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_logo_club_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_logo_club_1"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:focusable="false"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="@string/jpg_png_file"
+            android:padding="15dp"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/tanggal"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_logo_club_1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_tanggal"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tanggal">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_tanggal"
+            android:layout_width="182dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:focusable="false"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="@string/tanggal_angka"
+            android:padding="15dp"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_waktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/waktu"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tl_tanggal"
+        app:layout_constraintTop_toBottomOf="@+id/tl_logo_club_1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_waktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_waktu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_waktu">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_waktu"
+            android:layout_width="182dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:focusable="false"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="@string/waktu_angka"
+            android:padding="15dp"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_name_club_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Nama club away"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_tanggal" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_name_club_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_club_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_club_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_name_club_2"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="Foo Fc"
+            android:inputType="text"
+            android:padding="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_logo_club_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Logo club away"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_name_club_2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_logo_club_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_logo_club_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_logo_club_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_logo_club_2"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:focusable="false"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="@string/jpg_png_file"
+            android:padding="15dp"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_stadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stadion"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_logo_club_2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_stadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="@+id/tv_stadium"
+        app:layout_constraintTop_toBottomOf="@+id/tv_stadium">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_stadium"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_text_input"
+            android:fontFamily="@font/nunito_bold"
+            android:hint="@string/jalak_harupat"
+            android:padding="15dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_bg"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="@string/btn_simpan"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
