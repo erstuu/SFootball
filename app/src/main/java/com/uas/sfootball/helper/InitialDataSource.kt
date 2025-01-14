@@ -4,15 +4,18 @@ import android.content.Context
 import com.uas.sfootball.R
 import com.uas.sfootball.models.Dates
 import com.uas.sfootball.models.Match
-import com.uas.sfootball.models.Month
 
 object InitialDataSource {
     fun getDates(): List<Dates> {
+        val currentDate = DatePickerHelper.getCurrentDate()
+        val day = currentDate.day.toString()
+        val month = currentDate.month
+        val year = currentDate.year.toString()
         return listOf(
-            Dates(1, "10", Month.Januari, "2025", "20", "00"),
-            Dates(2, "10", Month.Januari, "2025", "22", "00"),
-            Dates(3, "10", Month.Januari, "2025", "01", "00"),
-            Dates(4, "14", Month.Januari, "2025", "20", "00"),
+            Dates(1, day, month, year, "20", "00"),
+            Dates(2, day, month, year, "22", "00"),
+            Dates(3, day, month, year, "01", "00"),
+            Dates(4, day, month, year, "03", "00"),
         )
     }
 
@@ -44,11 +47,12 @@ object InitialDataSource {
             ),
             Match(
                 4,
-                "Tiger Fc",
-                "Ft Fc",
-                StorageHelper.getDrawableUri(context, R.drawable.tiger_fc).toString(),
-                StorageHelper.getDrawableUri(context, R.drawable.ft_fc).toString(),
-                4
+                "Te Fc",
+                "Lion Fc",
+                StorageHelper.getDrawableUri(context, R.drawable.te_fc).toString(),
+                StorageHelper.getDrawableUri(context, R.drawable.lion_fc).toString(),
+                3,
+                "2-1"
             )
         )
     }
