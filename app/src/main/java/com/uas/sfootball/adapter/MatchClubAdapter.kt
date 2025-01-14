@@ -3,6 +3,7 @@ package com.uas.sfootball.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.uas.sfootball.databinding.ItemViewMatchBinding
 import com.uas.sfootball.models.Dates
 import com.uas.sfootball.models.Match
@@ -20,7 +21,6 @@ class MatchClubAdapter(private val listMatch: MutableList<MatchesWithDate>) : Re
                 match to matchesWithDate.date
             }
         }
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,8 +46,13 @@ class MatchClubAdapter(private val listMatch: MutableList<MatchesWithDate>) : Re
                 }
                 tvClubNameHome.text = match.nameHomeTeam
                 tvClubNameAway.text = match.nameAwayTeam
-                cvClubLogoHome.setImageResource(match.logoHomeTeam)
-                cvClubLogoAway.setImageResource(match.logoAwayTeam)
+                Glide.with(cvClubLogoHome.context)
+                    .load(match.logoHomeTeam)
+                    .into(cvClubLogoHome)
+
+                Glide.with(cvClubLogoAway.context)
+                    .load(match.logoAwayTeam)
+                    .into(cvClubLogoAway)
             }
         }
     }
