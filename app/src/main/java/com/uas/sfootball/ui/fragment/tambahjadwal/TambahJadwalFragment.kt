@@ -42,7 +42,9 @@ class TambahJadwalFragment : Fragment() {
         CLUB1, CLUB2
     }
 
-    private var currentInput: CurrentInput? = null
+    private lateinit var currentInput: CurrentInput
+    private lateinit var logoClub1Uri: Uri
+    private lateinit var logoClub2Uri: Uri
 
     private var selectedDay: String = ""
     private var selectedMonth: Month = Month.Januari
@@ -99,10 +101,17 @@ class TambahJadwalFragment : Fragment() {
             if (selectedImageUri != null) {
                 try {
                     val savedImageUri = StorageHelper.saveImageToStorage(requireContext(), selectedImageUri)
+                    val fileName = savedImageUri?.lastPathSegment?.substringAfterLast('/')
                     if (savedImageUri != null) {
                         when (currentInput) {
-                            CurrentInput.CLUB1 -> binding.tiLogoClub1.setText(savedImageUri.toString())
-                            CurrentInput.CLUB2 -> binding.tiLogoClub2.setText(savedImageUri.toString())
+                            CurrentInput.CLUB1 -> {
+                                binding.tiLogoClub1.setText(fileName)
+                                logoClub1Uri = savedImageUri
+                            }
+                            CurrentInput.CLUB2 -> {
+                                binding.tiLogoClub2.setText(fileName)
+                                logoClub2Uri = savedImageUri
+                            }
                             else -> showSnackbar(getString(R.string.invalid_input))
                         }
                     } else {
@@ -217,8 +226,8 @@ class TambahJadwalFragment : Fragment() {
                     val match = Match(
                         nameHomeTeam = club1,
                         nameAwayTeam = club2,
-                        logoHomeTeam = logoClub1,
-                        logoAwayTeam = logoClub2,
+                        logoHomeTeam = logoClub1Uri.toString(),
+                        logoAwayTeam = logoClub2Uri.toString(),
                         dateId = 0
                     )
 
