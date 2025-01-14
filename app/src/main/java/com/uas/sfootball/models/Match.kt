@@ -12,5 +12,6 @@ data class Match(
     val logoHomeTeam: String,
     val logoAwayTeam: String,
     val dateId: Int,
-    val score: String? = null
+    val score: String? = null,
+    val stadium: String? = null
 )
