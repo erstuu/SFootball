@@ -8,7 +8,20 @@ import com.uas.sfootball.models.Dates
 import com.uas.sfootball.models.Match
 import com.uas.sfootball.models.MatchesWithDate
 
-class MatchClubAdapter(private val listMatch: List<MatchesWithDate>) : RecyclerView.Adapter<MatchClubAdapter.ViewHolder>() {
+class MatchClubAdapter(private val listMatch: MutableList<MatchesWithDate>) : RecyclerView.Adapter<MatchClubAdapter.ViewHolder>() {
+
+    private var flattenedMatches: List<Pair<Match, Dates>> = emptyList()
+
+    fun updateList(newList: List<MatchesWithDate>) {
+        listMatch.clear()
+        listMatch.addAll(newList)
+        flattenedMatches = listMatch.flatMap { matchesWithDate ->
+            matchesWithDate.matches.map { match ->
+                match to matchesWithDate.date
+            }
+        }
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemViewMatchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,21 +33,19 @@ class MatchClubAdapter(private val listMatch: List<MatchesWithDate>) : RecyclerV
         holder.bind(match, date)
     }
 
-    private val flattenedMatches = listMatch.flatMap { matchesWithDate ->
-        matchesWithDate.matches.map { match ->
-            match to matchesWithDate.date
-        }
-    }
-
-    override fun getItemCount(): Int = listMatch.size
+    override fun getItemCount(): Int = flattenedMatches.size
 
     inner class ViewHolder(private val binding: ItemViewMatchBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(match: Match, date: Dates) {
             val hour = "${date.hour}:${date.minute}"
             with(binding) {
+                if (match.score != null) {
+                    tvDateTime.text = match.score
+                } else {
+                    tvDateTime.text = hour
+                }
                 tvClubNameHome.text = match.nameHomeTeam
                 tvClubNameAway.text = match.nameAwayTeam
-                tvDateTime.text = hour
                 cvClubLogoHome.setImageResource(match.logoHomeTeam)
                 cvClubLogoAway.setImageResource(match.logoAwayTeam)
             }
