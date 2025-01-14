@@ -9,8 +9,8 @@ data class Match(
     val id: Int = 0,
     val nameHomeTeam: String,
     val nameAwayTeam: String,
-    val logoHomeTeam: Int,
-    val logoAwayTeam: Int,
+    val logoHomeTeam: String,
+    val logoAwayTeam: String,
     val dateId: Int,
     val score: String? = null
 )
