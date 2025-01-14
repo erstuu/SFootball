@@ -14,7 +14,10 @@ interface DateDao {
     @Insert
     suspend fun insertDates(date: List<Dates>)
 
+    @Query("SELECT * FROM dates WHERE day = :day AND month = :month AND year = :year")
+    suspend fun getDate(day: String, month: String, year: String): Dates
+
     @Transaction
     @Query("SELECT * FROM dates")
-    fun getDatesWithMatches(): Flow<List<MatchesWithDate>>
+    fun getDatesWithMatches(): Flow<MutableList<MatchesWithDate>>
 }
