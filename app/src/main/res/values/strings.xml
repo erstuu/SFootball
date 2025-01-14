@@ -9,7 +9,8 @@
     <string name="club_1">Foc FC</string>
     <string name="club_2">Tiger FC</string>
     <string name="cup">Juragan Cup</string>
-    <string name="month_year">Januari 2025</string>
+    <string name="month">Januari</string>
+    <string name="year">2025</string>
     <string name="pilih_tanggal">pilih tanggal</string>
     <string name="ok">OK</string>
     <string name="jpg_png_file">jpg/png file</string>
@@ -22,4 +23,5 @@
     <string name="btn_simpan">Simpan</string>
     <string name="data_berhasil_ditambahkan">Data berhasil ditambahkan</string>
     <string name="form_harus_diisi_semua">Form harus diisi semua</string>
+    <string name="belum_ada_jadwal">Belum ada jadwal pertandingan</string>
 </resources>
