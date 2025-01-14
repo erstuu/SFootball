@@ -17,5 +17,17 @@ data class Dates(
 
 enum class Month {
     Januari, Februari, Maret, April, Mei, Juni,
-    Juli, Agustus, September, Oktober, November, December
+    Juli, Agustus, September, Oktober, November, December, Unknown
 }
+
+data class MDate(
+    val days: List<String>,
+    val dayNumbers: List<Int>,
+    val month: Int,
+    val year: String
+)
+
+data class DateInfo(
+    val day: String,
+    val dayNumber: Int
+)
