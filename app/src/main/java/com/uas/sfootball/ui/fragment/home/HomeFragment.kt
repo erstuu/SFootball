@@ -3,6 +3,7 @@ package com.uas.sfootball.ui.fragment.home
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.uas.sfootball.R
@@ -23,6 +25,7 @@ import java.util.Calendar
 import com.uas.sfootball.helper.DatePickerHelper
 import com.uas.sfootball.helper.SmoothScrollHelper
 import com.uas.sfootball.models.MDate
+import com.uas.sfootball.ui.fragment.detail.DetailMatchFragment
 
 class HomeFragment : Fragment() {
 
@@ -139,7 +142,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupMatchesRecyclerView(matches: MutableList<MatchesWithDate>) {
-        val adapterMatch = MatchClubAdapter(mutableListOf())
+        val adapterMatch = MatchClubAdapter()
         with(binding.rvMatch) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
