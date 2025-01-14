@@ -1,4 +1,4 @@
-package com.uas.sfootball.ui
+package com.uas.sfootball.ui.fragment.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
