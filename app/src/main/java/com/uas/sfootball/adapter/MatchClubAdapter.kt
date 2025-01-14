@@ -2,16 +2,19 @@ package com.uas.sfootball.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.uas.sfootball.databinding.ItemViewMatchBinding
 import com.uas.sfootball.models.Dates
 import com.uas.sfootball.models.Match
 import com.uas.sfootball.models.MatchesWithDate
+import com.uas.sfootball.ui.fragment.home.HomeFragmentDirections
 
-class MatchClubAdapter(private val listMatch: MutableList<MatchesWithDate>) : RecyclerView.Adapter<MatchClubAdapter.ViewHolder>() {
+class MatchClubAdapter : RecyclerView.Adapter<MatchClubAdapter.ViewHolder>() {
 
     private var flattenedMatches: List<Pair<Match, Dates>> = emptyList()
+    private val listMatch = mutableListOf<MatchesWithDate>()
 
     fun updateList(newList: List<MatchesWithDate>) {
         listMatch.clear()
@@ -53,6 +56,11 @@ class MatchClubAdapter(private val listMatch: MutableList<MatchesWithDate>) : Re
                 Glide.with(cvClubLogoAway.context)
                     .load(match.logoAwayTeam)
                     .into(cvClubLogoAway)
+            }
+
+            binding.root.setOnClickListener {
+                val toDetailMatchFragment = HomeFragmentDirections.actionHomeFragmentToDetailMatchFragment(match.id)
+                binding.root.findNavController().navigate(toDetailMatchFragment)
             }
         }
     }
