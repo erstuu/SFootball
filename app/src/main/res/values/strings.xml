@@ -41,4 +41,6 @@
     <string name="detail">Detail</string>
     <string name="juragan_cup">Juragan cup</string>
     <string name="selasa_14_januari_2025">Selasa, 14 Januari 2025</string>
+    <string name="stadium_jalak_harupat">Stadium: %s</string>
+    <string name="stadium_wajib_diisi">Stadium wajib diisi</string>
 </resources>
