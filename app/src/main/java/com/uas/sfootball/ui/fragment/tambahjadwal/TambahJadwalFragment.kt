@@ -206,6 +206,7 @@ class TambahJadwalFragment : Fragment() {
             val waktu = binding.tiWaktu.text.toString()
             val logoClub1 = binding.tiLogoClub1.text.toString()
             val logoClub2 = binding.tiLogoClub2.text.toString()
+            val stadium = binding.tiStadium.text.toString()
 
             when {
                 club1.isEmpty() -> showSnackbar(getString(R.string.club1_name_required))
@@ -214,6 +215,7 @@ class TambahJadwalFragment : Fragment() {
                 waktu.isEmpty() -> showSnackbar(getString(R.string.time_required))
                 logoClub1.isEmpty() -> showSnackbar(getString(R.string.club1_logo_required))
                 logoClub2.isEmpty() -> showSnackbar(getString(R.string.club2_logo_required))
+                stadium.isEmpty() -> showSnackbar(getString(R.string.stadium_wajib_diisi))
                 else -> {
                     val dates = Dates(
                         day = selectedDay,
@@ -228,7 +230,8 @@ class TambahJadwalFragment : Fragment() {
                         nameAwayTeam = club2,
                         logoHomeTeam = logoClub1Uri.toString(),
                         logoAwayTeam = logoClub2Uri.toString(),
-                        dateId = 0
+                        dateId = 0,
+                        stadium = stadium
                     )
 
                     val matchesWithDate = MatchesWithDate(dates, listOf(match))
