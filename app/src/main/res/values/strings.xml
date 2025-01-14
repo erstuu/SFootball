@@ -38,4 +38,7 @@
     <string name="error_saving_image">Error simpan gambar</string>
     <string name="match_added_successfully">Pertandingan berhasil ditambahkan</string>
     <string name="invalid_input">Input tidak sesuai</string>
+    <string name="detail">Detail</string>
+    <string name="juragan_cup">Juragan cup</string>
+    <string name="selasa_14_januari_2025">Selasa, 14 Januari 2025</string>
 </resources>
