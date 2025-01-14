@@ -87,6 +87,10 @@ class HomeFragment : Fragment() {
                     selectedMonthEnum,
                     selectedYear.toString()
                 ).observe(viewLifecycleOwner) { matches ->
+                    if (matches.isEmpty()) {
+                        binding.tvCompe.visibility = View.GONE
+                        showSnackbar(getString(R.string.belum_ada_jadwal), R.color.light_yellow)
+                    }
                     binding.tvMonth.text = selectedMonthName
                     binding.tvYear.text = selectedYear.toString()
                     setupMatchesRecyclerView(matches)
@@ -137,6 +141,10 @@ class HomeFragment : Fragment() {
         val year = yearNow.toString()
 
         viewModel.getMatchesByDate(day, month, year).observe(viewLifecycleOwner) { matches ->
+            if (matches.isEmpty()) {
+                binding.tvCompe.visibility = View.GONE
+                showSnackbar(getString(R.string.belum_ada_jadwal), R.color.light_yellow)
+            }
             setupMatchesRecyclerView(matches)
         }
     }
@@ -179,6 +187,7 @@ class HomeFragment : Fragment() {
                 selectedYear
             ).observe(viewLifecycleOwner) { matches ->
                 if (matches.isEmpty()) {
+                    binding.tvCompe.visibility = View.GONE
                     showSnackbar(getString(R.string.belum_ada_jadwal), R.color.light_yellow)
                 }
                 setupMatchesRecyclerView(matches)
