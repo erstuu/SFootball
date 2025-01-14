@@ -24,4 +24,18 @@
     <string name="data_berhasil_ditambahkan">Data berhasil ditambahkan</string>
     <string name="form_harus_diisi_semua">Form harus diisi semua</string>
     <string name="belum_ada_jadwal">Belum ada jadwal pertandingan</string>
+    <string name="failed_to_save_image">Failed to save image</string>
+    <string name="club1">club1</string>
+    <string name="club2">club2</string>
+    <string name="club1_name_required">Nama klub 1 wajib dimasukkan</string>
+    <string name="club2_name_required">Nama klub 2 wajib dimasukkan</string>
+    <string name="date_required">Date is required</string>
+    <string name="time_required">Time is required</string>
+    <string name="club1_logo_required">Logo klub 1 wajib dimasukkan</string>
+    <string name="club2_logo_required">Logo klub 2 wajib dimasukkan</string>
+    <string name="permission_denied_please_allow_storage_access_to_continue">Izinkan penyimpanan untuk melanjutkan</string>
+    <string name="storage_permission_rationale">untuk menunggah gambar diperlukan izin</string>
+    <string name="error_saving_image">Error simpan gambar</string>
+    <string name="match_added_successfully">Pertandingan berhasil ditambahkan</string>
+    <string name="invalid_input">Input tidak sesuai</string>
 </resources>
