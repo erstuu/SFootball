@@ -1,5 +1,6 @@
 package com.uas.sfootball.helper
 
+import com.uas.sfootball.models.CurrentDate
 import com.uas.sfootball.models.DateInfo
 import com.uas.sfootball.models.Month
 import java.util.Calendar
@@ -83,5 +84,18 @@ object DatePickerHelper {
         }
 
         return dates
+    }
+
+    fun getCurrentDate(): CurrentDate {
+        val calendar = Calendar.getInstance()
+        val dayNumber = calendar.get(Calendar.DAY_OF_MONTH)
+        val month = calendar.get(Calendar.MONTH)
+        val year = calendar.get(Calendar.YEAR)
+
+        return CurrentDate(
+            day = dayNumber,
+            month = getMonthByNum(month),
+            year = year
+        )
     }
 }
