@@ -33,10 +33,15 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         navView.setupWithNavController(navController)
 
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                // TODO: Implement action bar title
-//            }
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.detailMatchFragment -> {
+                    navView.visibility = BottomNavigationView.GONE
+                }
+                else -> {
+                    navView.visibility = BottomNavigationView.VISIBLE
+                }
+            }
+        }
     }
 }
