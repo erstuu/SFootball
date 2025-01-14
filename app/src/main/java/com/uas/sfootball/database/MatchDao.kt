@@ -3,6 +3,8 @@ package com.uas.sfootball.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
+import com.uas.sfootball.models.Dates
 import com.uas.sfootball.models.Match
 import com.uas.sfootball.models.MatchesWithDate
 import com.uas.sfootball.models.Month
@@ -13,6 +15,23 @@ interface MatchDao {
 
     @Insert
     fun insertMatches(matches: List<Match>)
+
+    @Insert
+    suspend fun insertDate(date: Dates): Long
+
+    @Insert
+    suspend fun insertMatch(match: Match)
+
+    @Transaction
+    suspend fun insertMatchWithDate(matchesWithDate: MatchesWithDate) {
+        val dateId = insertDate(matchesWithDate.date)
+
+        val dateIdInt = dateId.toInt()
+
+        matchesWithDate.matches.forEach { match ->
+            insertMatch(match.copy(dateId = dateIdInt))
+        }
+    }
 
     @Query("SELECT * FROM matches WHERE dateId = :dateId")
     fun getMatches(dateId: Int): Flow<List<Match>>

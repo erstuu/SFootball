@@ -40,7 +40,7 @@ abstract class SFootballDatabase : RoomDatabase() {
                                     val dateDao = database.dateDao()
                                     dateDao.insertDates(InitialDataSource.getDates())
                                     val matchDao = database.matchDao()
-                                    matchDao.insertMatches(InitialDataSource.getMatches())
+                                    matchDao.insertMatches(InitialDataSource.getMatches(context))
                                 }
                             }
                         }
