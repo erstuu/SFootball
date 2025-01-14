@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.uas.sfootball.R
 import com.uas.sfootball.SFootballApplication
 import com.uas.sfootball.ViewModelFactory
 import com.uas.sfootball.databinding.FragmentDetailMatchBinding
@@ -39,22 +42,32 @@ class DetailMatchFragment : Fragment() {
     private fun setupToolbar() {
         val toolbar = binding.toolbar
         toolbar.isTitleCentered = true
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_30)
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupView() {
-        viewModel.getMatchById(args.matchId).observe(viewLifecycleOwner) {
-            val date = "${it.date.day} ${it.date.month} ${it.date.year}"
-            val hour = "${it.date.hour}:${it.date.minute}"
-            binding.tvDate.text = date
-            binding.tvClubNameHome.text = it.matches[0].nameHomeTeam
-            binding.tvClubNameAway.text = it.matches[0].nameAwayTeam
-            binding.tvScore.text = it.matches[0].score ?: hour
-            Glide.with(requireContext())
-                .load(it.matches[0].logoHomeTeam)
-                .into(binding.cvClubLogoHome)
-            Glide.with(requireContext())
-                .load(it.matches[0].logoAwayTeam)
-                .into(binding.cvClubLogoAway)
+        viewModel.getMatchById(args.matchId).observe(viewLifecycleOwner) { matchWithDate ->
+            if (matchWithDate.matches.isNotEmpty()) {
+                val match = matchWithDate.matches[0]
+                val date = "${matchWithDate.date.day} ${matchWithDate.date.month} ${matchWithDate.date.year}"
+                val hour = "${matchWithDate.date.hour}:${matchWithDate.date.minute}"
+                binding.tvDate.text = date
+                binding.tvClubNameHome.text = match.nameHomeTeam
+                binding.tvClubNameAway.text = match.nameAwayTeam
+                binding.tvScore.text = match.score ?: hour
+                binding.tvStadiumDetail.text = match.stadium ?: "-"
+                Glide.with(requireContext())
+                    .load(match.logoHomeTeam)
+                    .into(binding.cvClubLogoHome)
+                Glide.with(requireContext())
+                    .load(match.logoAwayTeam)
+                    .into(binding.cvClubLogoAway)
+            } else {
+                Toast.makeText(requireContext(), "No match data found", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
