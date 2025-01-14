@@ -11,24 +11,16 @@ object StorageHelper {
 
     fun saveImageToStorage(context: Context, imageUri: Uri): Uri? {
         return try {
-            println("Input URI: $imageUri")
 
             val inputStream = context.contentResolver.openInputStream(imageUri)
-            if (inputStream == null) {
-                println("Failed to open input stream for URI: $imageUri")
-                return null
-            }
+            inputStream ?: return null
 
             val mimeType = context.contentResolver.getType(imageUri)
-            println("MIME type: $mimeType")
             val fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType)
-            println("File extension: $fileExtension")
 
-            val imageName = "image_${System.currentTimeMillis()}.${fileExtension ?: "jpg"}"
-            println("Generated file name: $imageName")
+            val imageName = "logo_club.${fileExtension ?: "jpg"}"
 
             val file = File(context.filesDir, imageName)
-            println("File path: ${file.absolutePath}")
 
             val outputStream = FileOutputStream(file)
             inputStream.use { input ->
@@ -42,7 +34,6 @@ object StorageHelper {
                 "${context.packageName}.fileprovider",
                 file
             )
-            println("Output URI: $outputUri")
             outputUri
         } catch (e: Exception) {
             println("Exception occurred: ${e.message}")

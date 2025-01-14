@@ -5,9 +5,6 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
 
     <application
         android:name=".SFootballApplication"
@@ -23,11 +20,12 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:theme="@style/Theme.Sfootball"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".ui.activity.SplashScreenActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" >
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
