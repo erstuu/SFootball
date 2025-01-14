@@ -1,4 +1,4 @@
-package com.uas.sfootball
+package com.uas.sfootball.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.uas.sfootball.R
 import com.uas.sfootball.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
