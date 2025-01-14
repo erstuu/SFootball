@@ -31,3 +31,9 @@ data class DateInfo(
     val day: String,
     val dayNumber: Int
 )
+
+data class CurrentDate(
+    val day: Int,
+    val month: Month,
+    val year: Int
+)

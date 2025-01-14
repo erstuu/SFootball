@@ -43,4 +43,12 @@ interface MatchDao {
         WHERE dates.day = :day AND dates.month = :month AND dates.year = :year
     """)
     fun getMatchesByDate(day: String, month: Month, year: String): Flow<MutableList<MatchesWithDate>>
+
+    @Query("""
+    SELECT matches.*, dates.day, dates.month, dates.year, dates.hour, dates.minute, dates.isClicked 
+    FROM matches 
+    INNER JOIN dates ON matches.dateId = dates.id 
+    WHERE matches.id = :id
+    """)
+    fun getMatchById(id: Int): Flow<MatchesWithDate>
 }

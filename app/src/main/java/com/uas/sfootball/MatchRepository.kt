@@ -9,6 +9,8 @@ class MatchRepository(private val matchDao: MatchDao, private val dateDao: DateD
 
     fun getMatches(dateId: Int) = matchDao.getMatches(dateId)
 
+    fun getMatchById(id: Int) = matchDao.getMatchById(id)
+
     fun getMatchesByDate(day: String, month: Month, year: String) = matchDao.getMatchesByDate(day, month, year)
 
     fun getDatesWithMatches() = dateDao.getDatesWithMatches()
