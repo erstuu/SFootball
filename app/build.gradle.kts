@@ -42,6 +42,8 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
@@ -59,5 +61,5 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation (libs.androidx.room.ktx)
 
-    implementation(libs.coil)
+    implementation (libs.glide)
 }
