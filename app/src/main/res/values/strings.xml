@@ -43,4 +43,13 @@
     <string name="selasa_14_januari_2025">Selasa, 14 Januari 2025</string>
     <string name="stadium_jalak_harupat">Stadium: %s</string>
     <string name="stadium_wajib_diisi">Stadium wajib diisi</string>
+    <string name="edit">Edit</string>
+    <string name="nama_club_home">Nama club home</string>
+    <string name="logo_club_home">Logo club home</string>
+    <string name="nama_club_away">Nama club away</string>
+    <string name="foo_fc">Foo Fc</string>
+    <string name="logo_club_away">Logo club away</string>
+    <string name="score">Skor</string>
+    <string name="skor_wajib_diisi">Skor wajib diisi</string>
+    <string name="pertandingan_berhasil_dihapus">Pertandingan berhasil dihapus</string>
 </resources>
