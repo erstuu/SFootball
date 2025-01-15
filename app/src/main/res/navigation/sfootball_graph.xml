@@ -28,5 +28,20 @@
         <argument
             android:name="matchId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailMatchFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.uas.sfootball.ui.fragment.edit.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="matchId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
