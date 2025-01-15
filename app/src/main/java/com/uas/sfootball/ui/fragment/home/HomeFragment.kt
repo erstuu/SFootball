@@ -3,7 +3,6 @@ package com.uas.sfootball.ui.fragment.home
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.uas.sfootball.R
@@ -25,13 +23,12 @@ import java.util.Calendar
 import com.uas.sfootball.helper.DatePickerHelper
 import com.uas.sfootball.helper.SmoothScrollHelper
 import com.uas.sfootball.models.MDate
-import com.uas.sfootball.ui.fragment.detail.DetailMatchFragment
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels {
+    private val viewModel : HomeViewModel by viewModels {
         val repository = (requireActivity().application as SFootballApplication).repository
         ViewModelFactory(repository)
     }
@@ -69,9 +66,9 @@ class HomeFragment : Fragment() {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
-                val selectedMonthName = DatePickerHelper.getMonthName(selectedMonth)
-                val allDatesInMonth = DatePickerHelper.getAllDatesInMonth(selectedYear, selectedMonth)
-                val selectedMonthEnum = DatePickerHelper.getMonthByNum(selectedMonth)
+                val selectedMonthName = DatePickerHelper.getMonthName(selectedMonth+1)
+                val allDatesInMonth = DatePickerHelper.getAllDatesInMonth(selectedYear, selectedMonth+1)
+                val selectedMonthEnum = DatePickerHelper.getMonthByNum(selectedMonth+1)
 
                 val date = MDate(
                     days = allDatesInMonth.map { it.day },
@@ -131,16 +128,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupMatchSchedule() {
-        val dateNow = Calendar.getInstance()
-        val dayNow = dateNow.get(Calendar.DAY_OF_MONTH)
-        val monthNow = dateNow.get(Calendar.MONTH)
-        val yearNow = dateNow.get(Calendar.YEAR)
-
-        val day = dayNow.toString()
-        val month = DatePickerHelper.getMonthByNum(monthNow)
-        val year = yearNow.toString()
-
-        viewModel.getMatchesByDate(day, month, year).observe(viewLifecycleOwner) { matches ->
+        viewModel.matchesWithDate.observe(viewLifecycleOwner) { matches ->
             if (matches.isEmpty()) {
                 binding.tvCompe.visibility = View.GONE
                 showSnackbar(getString(R.string.belum_ada_jadwal), R.color.light_yellow)
@@ -180,7 +168,7 @@ class HomeFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupDateRecyclerView(date: MDate) {
         val adapterDate = DateOfMatchAdapter(date.days, date.dayNumbers, date) { selectedDate, selectedMonth, selectedYear ->
-            val monthName = DatePickerHelper.getMonthByNum(selectedMonth)
+            val monthName = DatePickerHelper.getMonthByNum(selectedMonth+1)
             viewModel.getMatchesByDate(
                 selectedDate,
                 monthName,
