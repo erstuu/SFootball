@@ -1,4 +1,7 @@
 ## App Preview
+### Aplikasi penjadwalan sepakbola berbasis android view dengan bahasa pemrograman kotlin
+Dibuat untuk memenuhi penilaian akhir mata kuliah Pemrograman Mobile Lanjut<br>
+Fitur Create, Read, Update, and Delete
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/7bf44faf-0cb6-4945-b923-9a65f0c38054" alt="Homepage" width="20%">
