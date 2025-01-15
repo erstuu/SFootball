@@ -28,6 +28,7 @@ object InitialDataSource {
                 StorageHelper.getDrawableUri(context, R.drawable.lion_fc).toString(),
                 StorageHelper.getDrawableUri(context, R.drawable.foo_fc).toString(),
                 1,
+                "2-1",
                 stadium = "Stadion Dua"
             ),
             Match(
@@ -55,8 +56,7 @@ object InitialDataSource {
                 StorageHelper.getDrawableUri(context, R.drawable.te_fc).toString(),
                 StorageHelper.getDrawableUri(context, R.drawable.lion_fc).toString(),
                 4,
-                "2-1",
-                "Stadion Utama"
+                 stadium = "Stadion Utama"
             )
         )
     }
