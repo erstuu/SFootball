@@ -1,7 +1,8 @@
 ## App Preview
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/2074cf3a-4aae-4ba5-9599-5b8aa43842c3" alt="Homepage" width="30%" style="margin-right: 10px;">
-  <img src="https://github.com/user-attachments/assets/d8d0bd6b-0c82-4ec4-8891-d499b99f91c4" alt="Detail Page" width="30%">
-  <img src="https://github.com/user-attachments/assets/d01d48c6-8c03-4889-9a87-4e839affccf0" alt="Tambah Jadwal Page" width="30%">
+  <img src="https://github.com/user-attachments/assets/7bf44faf-0cb6-4945-b923-9a65f0c38054" alt="Homepage" width="20%">
+  <img src="https://github.com/user-attachments/assets/44bed664-fe34-404f-a2d7-f1863343a249" alt="Detail Page" width="20%">
+  <img src="https://github.com/user-attachments/assets/a7dc8ca5-222e-462f-8bf7-e0bdb00e5f5b" alt="Edit Page" width="20%">
+  <img src="https://github.com/user-attachments/assets/6603060a-02ac-48b9-9544-a1cf80a3eca8" alt="Tambah Jadwal Page" width="20%">
 </div>
