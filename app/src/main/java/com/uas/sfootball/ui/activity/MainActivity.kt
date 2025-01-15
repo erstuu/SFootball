@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.detailMatchFragment -> {
                     navView.visibility = BottomNavigationView.GONE
                 }
+                R.id.editFragment -> {
+                    navView.visibility = BottomNavigationView.GONE
+                }
                 else -> {
                     navView.visibility = BottomNavigationView.VISIBLE
                 }
