@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -14,6 +15,7 @@ import com.uas.sfootball.R
 import com.uas.sfootball.SFootballApplication
 import com.uas.sfootball.ViewModelFactory
 import com.uas.sfootball.databinding.FragmentDetailMatchBinding
+import com.uas.sfootball.helper.DatePickerHelper
 
 class DetailMatchFragment : Fragment() {
 
@@ -67,6 +69,11 @@ class DetailMatchFragment : Fragment() {
                     .into(binding.cvClubLogoAway)
             } else {
                 Toast.makeText(requireContext(), "No match data found", Toast.LENGTH_SHORT).show()
+            }
+
+            binding.btnEditMatch.setOnClickListener {
+                val toEditFragment = DetailMatchFragmentDirections.actionDetailMatchFragmentToEditFragment(args.matchId)
+                findNavController().navigate(toEditFragment)
             }
         }
     }
