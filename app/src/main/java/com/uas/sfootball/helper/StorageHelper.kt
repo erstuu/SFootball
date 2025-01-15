@@ -36,7 +36,6 @@ object StorageHelper {
             )
             outputUri
         } catch (e: Exception) {
-            println("Exception occurred: ${e.message}")
             e.printStackTrace()
             null
         }
@@ -50,7 +49,6 @@ object StorageHelper {
                 )
             }"
         )
-        println("Generated drawable URI: $uri")
         return uri
     }
 }

@@ -25,36 +25,36 @@ object DatePickerHelper {
 
     fun getMonthName(month: Int): String {
         return when (month) {
-            0 -> "Januari"
-            1 -> "Februari"
-            2 -> "Maret"
-            3 -> "April"
-            4 -> "Mei"
-            5 -> "Juni"
-            6 -> "Juli"
-            7 -> "Agustus"
-            8 -> "September"
-            9 -> "Oktober"
-            10 -> "November"
-            11 -> "Desember"
+            1 -> "Januari"
+            2 -> "Februari"
+            3 -> "Maret"
+            4 -> "April"
+            5 -> "Mei"
+            6 -> "Juni"
+            7 -> "Juli"
+            8 -> "Agustus"
+            9 -> "September"
+            10 -> "Oktober"
+            11 -> "November"
+            12 -> "Desember"
             else -> "Unknown"
         }
     }
 
     fun getMonthByNum(month: Int): Month {
         return when (month) {
-            0 -> Month.Januari
-            1 -> Month.Februari
-            2 -> Month.Maret
-            3 -> Month.April
-            4 -> Month.Mei
-            5 -> Month.Juni
-            6 -> Month.Juli
-            7 -> Month.Agustus
-            8 -> Month.September
-            9 -> Month.Oktober
-            10 -> Month.November
-            11 -> Month.December
+            1 -> Month.Januari
+            2 -> Month.Februari
+            3 -> Month.Maret
+            4 -> Month.April
+            5 -> Month.Mei
+            6 -> Month.Juni
+            7 -> Month.Juli
+            8 -> Month.Agustus
+            9 -> Month.September
+            10 -> Month.Oktober
+            11 -> Month.November
+            12 -> Month.December
             else -> Month.Unknown
         }
     }
@@ -86,10 +86,28 @@ object DatePickerHelper {
         return dates
     }
 
+    fun getNumberOfMonth(month: Month): Int {
+        return when (month) {
+            Month.Januari -> 1
+            Month.Februari -> 2
+            Month.Maret -> 3
+            Month.April -> 4
+            Month.Mei -> 5
+            Month.Juni -> 6
+            Month.Juli -> 7
+            Month.Agustus -> 8
+            Month.September -> 9
+            Month.Oktober -> 10
+            Month.November -> 11
+            Month.December -> 12
+            Month.Unknown -> -1
+        }
+    }
+
     fun getCurrentDate(): CurrentDate {
         val calendar = Calendar.getInstance()
         val dayNumber = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = calendar.get(Calendar.MONTH)
+        val month = calendar.get(Calendar.MONTH) + 1
         val year = calendar.get(Calendar.YEAR)
 
         return CurrentDate(
