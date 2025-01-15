@@ -2,8 +2,6 @@ package com.uas.sfootball.ui.fragment.tambahjadwal
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
-import android.Manifest
+import android.util.Log
+import androidx.activity.result.PickVisualMediaRequest
 import com.uas.sfootball.R
 import com.uas.sfootball.SFootballApplication
 import com.uas.sfootball.ViewModelFactory
@@ -38,7 +37,7 @@ class TambahJadwalFragment : Fragment() {
         ViewModelFactory(repository)
     }
 
-    private enum class CurrentInput {
+    enum class CurrentInput {
         CLUB1, CLUB2
     }
 
@@ -69,59 +68,30 @@ class TambahJadwalFragment : Fragment() {
         setupAction()
     }
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-            setPhotoPicker()
-        } else {
-            showSnackbar(getString(R.string.permission_denied_please_allow_storage_access_to_continue))
-        }
-    }
-
-    private fun checkPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                showSnackbar(getString(R.string.storage_permission_rationale))
-            }
-            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-        } else {
-            setPhotoPicker()
-        }
-    }
-
-    private val photoPickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == android.app.Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            val selectedImageUri: Uri? = data?.data
-            if (selectedImageUri != null) {
-                try {
-                    val savedImageUri = StorageHelper.saveImageToStorage(requireContext(), selectedImageUri)
-                    val fileName = savedImageUri?.lastPathSegment?.substringAfterLast('/')
-                    if (savedImageUri != null) {
-                        when (currentInput) {
-                            CurrentInput.CLUB1 -> {
-                                binding.tiLogoClub1.setText(fileName)
-                                logoClub1Uri = savedImageUri
-                            }
-                            CurrentInput.CLUB2 -> {
-                                binding.tiLogoClub2.setText(fileName)
-                                logoClub2Uri = savedImageUri
-                            }
-                            else -> showSnackbar(getString(R.string.invalid_input))
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        uri?.let {
+            Log.d("URI", "$uri")
+            try {
+                val savedImageUri = StorageHelper.saveImageToStorage(requireContext(), it)
+                val fileName = savedImageUri?.lastPathSegment?.substringAfterLast('/')
+                if (savedImageUri != null) {
+                    when (currentInput) {
+                        CurrentInput.CLUB1 -> {
+                            binding.tiLogoClub1.setText(fileName)
+                            logoClub1Uri = savedImageUri
                         }
-                    } else {
-                        showSnackbar(getString(R.string.failed_to_save_image))
+                        CurrentInput.CLUB2 -> {
+                            binding.tiLogoClub2.setText(fileName)
+                            logoClub2Uri = savedImageUri
+                        }
                     }
-                } catch (e: Exception) {
-                    showSnackbar(getString(R.string.error_saving_image))
+                } else {
+                    showSnackbar(getString(R.string.failed_to_save_image))
                 }
+            } catch (e: Exception) {
+                showSnackbar(getString(R.string.error_saving_image))
             }
-        }
+        }?: Log.d("URI", "Uri not found")
     }
 
     private fun setupToolbar() {
@@ -183,19 +153,13 @@ class TambahJadwalFragment : Fragment() {
     private fun setupPhotoPicker() {
         binding.tiLogoClub1.setOnClickListener {
             currentInput = CurrentInput.CLUB1
-            checkPermissions()
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
         binding.tiLogoClub2.setOnClickListener {
             currentInput = CurrentInput.CLUB2
-            checkPermissions()
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
-    }
-
-    private fun setPhotoPicker() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        photoPickerLauncher.launch(intent)
     }
 
     private fun setupAction() {
@@ -258,6 +222,13 @@ class TambahJadwalFragment : Fragment() {
         selectedYear = ""
         selectedHour = ""
         selectedMinute = ""
+
+        if (::logoClub1Uri.isInitialized) {
+            logoClub1Uri = Uri.EMPTY
+        }
+        if (::logoClub2Uri.isInitialized) {
+            logoClub2Uri = Uri.EMPTY
+        }
     }
 
     private fun showSnackbar(message: String, color: Int = R.color.red) {
