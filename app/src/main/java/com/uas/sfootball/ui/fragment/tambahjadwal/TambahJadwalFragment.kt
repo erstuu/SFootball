@@ -68,32 +68,6 @@ class TambahJadwalFragment : Fragment() {
         setupAction()
     }
 
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        uri?.let {
-            Log.d("URI", "$uri")
-            try {
-                val savedImageUri = StorageHelper.saveImageToStorage(requireContext(), it)
-                val fileName = savedImageUri?.lastPathSegment?.substringAfterLast('/')
-                if (savedImageUri != null) {
-                    when (currentInput) {
-                        CurrentInput.CLUB1 -> {
-                            binding.tiLogoClub1.setText(fileName)
-                            logoClub1Uri = savedImageUri
-                        }
-                        CurrentInput.CLUB2 -> {
-                            binding.tiLogoClub2.setText(fileName)
-                            logoClub2Uri = savedImageUri
-                        }
-                    }
-                } else {
-                    showSnackbar(getString(R.string.failed_to_save_image))
-                }
-            } catch (e: Exception) {
-                showSnackbar(getString(R.string.error_saving_image))
-            }
-        }?: Log.d("URI", "Uri not found")
-    }
-
     private fun setupToolbar() {
         val toolbar = binding.toolbar
         toolbar.isTitleCentered = true
@@ -150,16 +124,47 @@ class TambahJadwalFragment : Fragment() {
         }
     }
 
+    private val pickMediaClub1 = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        handleImagePickerResult(uri, CurrentInput.CLUB1)
+    }
+
+    private val pickMediaClub2 = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        handleImagePickerResult(uri, CurrentInput.CLUB2)
+    }
+
     private fun setupPhotoPicker() {
         binding.tiLogoClub1.setOnClickListener {
-            currentInput = CurrentInput.CLUB1
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            pickMediaClub1.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
         binding.tiLogoClub2.setOnClickListener {
-            currentInput = CurrentInput.CLUB2
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            pickMediaClub2.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
+    }
+
+    private fun handleImagePickerResult(uri: Uri?, input: CurrentInput) {
+        uri?.let {
+            try {
+                val savedImageUri = StorageHelper.saveImageToStorage(requireContext(), it)
+                val fileName = savedImageUri?.lastPathSegment?.substringAfterLast('/')
+                if (savedImageUri != null) {
+                    when (input) {
+                        CurrentInput.CLUB1 -> {
+                            binding.tiLogoClub1.setText(fileName)
+                            logoClub1Uri = savedImageUri
+                        }
+                        CurrentInput.CLUB2 -> {
+                            binding.tiLogoClub2.setText(fileName)
+                            logoClub2Uri = savedImageUri
+                        }
+                    }
+                } else {
+                    showSnackbar(getString(R.string.failed_to_save_image))
+                }
+            } catch (e: Exception) {
+                showSnackbar(getString(R.string.error_saving_image))
+            }
+        } ?: Log.d("URI", "Uri not found")
     }
 
     private fun setupAction() {

@@ -18,7 +18,8 @@ object StorageHelper {
             val mimeType = context.contentResolver.getType(imageUri)
             val fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType)
 
-            val imageName = "logo_club.${fileExtension ?: "jpg"}"
+            val timeStamp = System.currentTimeMillis()
+            val imageName = "logo_club_${timeStamp}.${fileExtension ?: "jpg"}"
 
             val file = File(context.filesDir, imageName)
 
