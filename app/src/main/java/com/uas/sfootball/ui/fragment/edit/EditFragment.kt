@@ -193,7 +193,6 @@ class EditFragment : Fragment() {
                 logoClub1.isBlank() -> showSnackbar(getString(R.string.club1_logo_required))
                 logoClub2.isBlank() -> showSnackbar(getString(R.string.club2_logo_required))
                 stadium.isBlank() -> showSnackbar(getString(R.string.stadium_wajib_diisi))
-                score.isBlank() -> showSnackbar(getString(R.string.skor_wajib_diisi))
                 else -> {
                     val dates = Dates(
                         id = matchWithDate.date.id,
@@ -211,7 +210,7 @@ class EditFragment : Fragment() {
                         logoAwayTeam = logoClub2Uri?.toString() ?: matchWithDate.matches[0].logoAwayTeam,
                         dateId = matchWithDate.matches[0].dateId,
                         stadium = stadium,
-                        score = score
+                        score = score.ifBlank { null }
                     )
 
                     val matchesWithDate = MatchesWithDate(dates, listOf(match))

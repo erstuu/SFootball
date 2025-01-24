@@ -60,7 +60,7 @@ interface MatchDao {
         logoHomeTeam: String,
         logoAwayTeam: String,
         stadium: String,
-        score: String
+        score: String? = null
     )
 
     @Query("SELECT * FROM dates WHERE id = :id")
@@ -120,7 +120,6 @@ interface MatchDao {
             logoAwayTeam = matchesWithDate.matches[0].logoAwayTeam,
             stadium = matchesWithDate.matches[0].stadium,
             score = matchesWithDate.matches[0].score
-                ?: (matchesWithDate.date.hour + ":" + matchesWithDate.date.minute)
         )
     }
 
