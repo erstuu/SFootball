@@ -52,4 +52,9 @@
     <string name="score">Skor</string>
     <string name="skor_wajib_diisi">Skor wajib diisi</string>
     <string name="pertandingan_berhasil_dihapus">Pertandingan berhasil dihapus</string>
+    <string name="delete_match">Delete Match</string>
+    <string name="are_you_sure_you_want_to_delete_this_match">Are you sure you want to delete this match?</string>
+    <string name="match_deleted_successfully">Match deleted successfully</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 </resources>

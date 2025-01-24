@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -234,9 +235,21 @@ class EditFragment : Fragment() {
         }
 
         binding.btnDeleteMatch.setOnClickListener {
-            viewModel.deleteMatch(matchWithDate)
-            val toHomeFragment = EditFragmentDirections.actionEditFragmentToHomeFragment()
-            findNavController().navigate(toHomeFragment)
+            AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.delete_match))
+                .setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_match))
+                .setPositiveButton(getString(R.string.delete)) { dialog, which ->
+                    showSnackbar(getString(R.string.match_deleted_successfully), R.color.light_yellow, false)
+                    viewModel.deleteMatch(matchWithDate)
+                    val toHomeFragment = EditFragmentDirections.actionEditFragmentToHomeFragment()
+                    findNavController().navigate(toHomeFragment)
+
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                    dialog.dismiss()
+                }
+                .setIcon(R.drawable.ic_warning_24)
+                .show()
         }
     }
 
@@ -257,14 +270,14 @@ class EditFragment : Fragment() {
         selectedMinute = ""
     }
 
-    private fun showSnackbar(message: String, color: Int = R.color.red) {
+    private fun showSnackbar(message: String, color: Int = R.color.red, anchor: Boolean? = true) {
         val textColor = ContextCompat.getColor(requireContext(), if (color == R.color.red) R.color.white else R.color.black)
 
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).apply {
             setBackgroundTint(ContextCompat.getColor(requireContext(), color))
             setTextColor(textColor)
             setActionTextColor(textColor)
-            anchorView = binding.btnSave
+            anchorView = if (anchor == true) binding.btnSave else requireActivity().findViewById(R.id.bottom_navigation)
             setAction(getString(R.string.ok)) {
                 dismiss()
             }
